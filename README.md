@@ -1,14 +1,10 @@
-# Render Flask App 🚀
+# PDF & Image to Voice Converter 🚀
 
-This is a simple Flask web application ready for deployment on [Render](https://render.com/) using Python 3.11.
+A full-featured Text-to-Speech web app with:
 
-## Features
-- Minimal Flask app
-- Ready for Render deployment
-- Auto-port configuration for cloud hosting
-- Includes `requirements.txt` with necessary dependencies (`flask` and `gunicorn`)
-
-## Usage
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
+- PDF → Voice
+- Image → Voice (OCR)
+- Male & Female Indian voices
+- Speed control (Slow/Normal/Fast)
+- Audio download & play
+- Python 3.11 + Flask + Render ready
