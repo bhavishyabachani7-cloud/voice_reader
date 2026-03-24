@@ -7,12 +7,16 @@ import PyPDF2
 
 app = Flask(__name__)
 
-# Home page
+# Fix Tesseract path for Render
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    try:
+        return render_template('index.html')
+    except Exception as e:
+        return f"Error loading page: {e}"
 
-# Conversion route
 @app.route('/convert', methods=['POST'])
 def convert():
     file = request.files['file']
@@ -21,27 +25,27 @@ def convert():
 
     text = ""
     filename = file.filename
+    temp_path = "/tmp/" + filename
+    file.save(temp_path)
 
     # PDF
-    if filename.endswith('.pdf'):
-        pdf_reader = PyPDF2.PdfReader(file)
+    if filename.lower().endswith('.pdf'):
+        pdf_reader = PyPDF2.PdfReader(temp_path)
         for page in pdf_reader.pages:
             text += page.extract_text()
-    
+
     # Image
     elif filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-        img = Image.open(file)
+        img = Image.open(temp_path)
         text = pytesseract.image_to_string(img)
 
     else:
         return "Invalid file format. Only PDF and Image allowed."
 
-    # Adjust speed for gTTS
-    tts_speed = True if speed == 'fast' else False
-    tts = gTTS(text=text, lang='en', slow=(speed=='slow'))
-
-    # Save audio file
-    audio_path = "output.mp3"
+    # gTTS audio save
+    tts_speed = (speed == 'slow')
+    tts = gTTS(text=text, lang='en', slow=tts_speed)
+    audio_path = "/tmp/output.mp3"
     tts.save(audio_path)
 
     return render_template('result.html', audio_file=audio_path, text=text)
