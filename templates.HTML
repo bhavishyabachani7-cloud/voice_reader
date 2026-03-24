@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF/Image to Voice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>PDF/Image to Voice Converter 😏</h1>
+    <form action="/convert" method="POST" enctype="multipart/form-data">
+        <label>Upload PDF/Image:</label>
+        <input type="file" name="file" required><br><br>
+
+        <label>Select Voice:</label>
+        <select name="voice">
+            <option value="male">Male (Indian)</option>
+            <option value="female">Female (Indian)</option>
+        </select><br><br>
+
+        <label>Speed:</label>
+        <select name="speed">
+            <option value="slow">Slow</option>
+            <option value="normal" selected>Normal</option>
+            <option value="fast">Fast</option>
+        </select><br><br>
+
+        <button type="submit">Convert to Voice</button>
+    </form>
+</body>
+</html>
