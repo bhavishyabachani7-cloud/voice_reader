@@ -1,4 +1,6 @@
-Flask
-PyPDF2
-edge-tts
+flask
 gunicorn
+pytesseract
+gTTS
+PyPDF2
+Pillow
