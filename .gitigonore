@@ -1,15 +1,4 @@
-
----
-
-### 2️⃣ `.gitignore`
-```text id="9jpl5k"
-# Python cache files
 __pycache__/
 *.pyc
-
-# Environment files
 .env
-
-# IDE folders (optional)
-.vscode/
-.idea/
+output.mp3
