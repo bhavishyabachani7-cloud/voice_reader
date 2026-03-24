@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
 .env
-output.mp3
+/tmp/output.mp3
